@@ -6,30 +6,28 @@
     <title>SIMPADU POLIBAN</title>
 </head>
 <tbody>
-    <h1>DATA MEHASISWA</h1>
+    <h1>DATA PRODI</h1>
     <br>
     <table border="1"
         <thead>
             <tr>
-            <th>NO</th>
-            <th>NIM</th>
+            <th>ID</th>
             <th>Nama</th>
+            <th>Kaprodi</th>
+            <th>Jurusan</th>
             </tr>
         </thead>
 </tbody>
             <tr>
-                <td>1</td>
-                <td>E020323102</td>
-                <td>Raditya Oktaviano</td>
+                <td>E023</td>
+                <td>Manajemen informatika</td>
+                <td>Raditya</td>
+                <td>Administrasi Bisnis</td>
             </tr>
             <tr>
-                <td>2</td>
-                <td>E020323101</td>
-                <td>Muhammad Satrio</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>JMK0203532</td>
-                <td>Amba Tungkang</td>
+                <td>E024</td>
+                <td>Digital Marketing</td>
+                <td>Sistia</td>
+                <td>Administrasi Bisnis</td>
             </tr>
 </html>
