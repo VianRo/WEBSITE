@@ -1,72 +1,48 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "4a";
+include "koneksi.php";
 
-// Membuat koneksi ke database
-$conn = mysqli_connect($servername, $username, $password, $database);
-
-// Periksa koneksi
-if (!$conn) {
-    die("Koneksi gagal: " . mysqli_connect_error());
-}
-
-// Query untuk mengambil data
 $query = "SELECT * FROM mahasiswa";
-$hasil = mysqli_query($conn, $query);
+$data = ambildata($query);
 
-// Periksa apakah query berhasil
-if (!$hasil) {
-    die("Query gagal: " . mysqli_error($conn));
-}
-
-// Mengambil semua data mahasiswa
-$data = mysqli_fetch_all($hasil, MYSQLI_ASSOC);
-
-// Debugging output
-echo "<pre>";
-print_r($data);
-echo "</pre>";
-
-// Bebaskan hasil query dan tutup koneksi
-mysqli_free_result($hasil);
-mysqli_close($conn);
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="Dark" style="color-scheme: dark;">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
-    </head>
-<tbody>
-    <h1>DATA MEHASISWA</h1>
+    <title>testing</title>
+</head>
+<body>
+    <h1>Data Mahasiswa</h1>
     <br>
-    <table border="1"
+    <table border="1" cellspacing="0" cellpadding="5">
         <thead>
-            <tr>
-            <th>NO</th>
+            <th>No</th>
             <th>NIM</th>
             <th>Nama</th>
-            </tr>
+            <th>Tanggal Lahir</th>
+            <th>Nomor Telepon</th>
+            <th>Email</th>
+            <th>ID Prodi</th>
         </thead>
-</tbody>
+        <tbody>
+            <?php
+            $i=1; 
+            foreach($data as $d) : ?>
             <tr>
-                <td>1</td>
-                <td>E020323102</td>
-                <td>Raditya Oktaviano</td>
+                <td><?php echo $i++; ?></td>
+                <td><?php echo $d["nim"] ?></td>
+                <td><?php echo $d["nama"] ?></td>
+                <td><?php echo $d["tanggal_lahir"] ?></td>
+                <td><?php echo $d["nomor_telepon"] ?></td>
+                <td><?php echo $d["email"] ?></td>
+                <td><?php echo $d["id_prodi"] ?></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>E020323101</td>
-                <td>Muhammad Satrio</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>JMK0203532</td>
-                <td>Amba Tungkang</td>
-            </tr>
+        <?php endforeach; ?>
+
+        </tbody>
+    </table>
+</body>
 </html>

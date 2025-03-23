@@ -1,33 +1,43 @@
+<?php
+include "koneksi.php";
+
+$query = "SELECT * FROM prodi";
+$data = ambildata($query);
+
+?>
+
+
+
 <!DOCTYPE html>
-<html dir="ltr" class="Dark" style="color-scheme : dark;" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIMPADU POLIBAN</title>
+    <title>tes prodi</title>
 </head>
-<tbody>
-    <h1>DATA PRODI</h1>
+<body>
+    <h1>Data Prodi</h1>
     <br>
-    <table border="1"
+    <table border="1" cellspacing="0" cellpadding="5">
         <thead>
-            <tr>
-            <th>ID</th>
+            <th>No</th>
             <th>Nama</th>
             <th>Kaprodi</th>
             <th>Jurusan</th>
-            </tr>
         </thead>
-</tbody>
+        <tbody>
+            <?php
+            $i=1; 
+            foreach($data as $d) : ?>
             <tr>
-                <td>E023</td>
-                <td>Manajemen informatika</td>
-                <td>Raditya</td>
-                <td>Administrasi Bisnis</td>
+                <td><?php echo $i++; ?></td>
+                <td><?php echo $d["nama"] ?></td>
+                <td><?php echo $d["kaprodi"] ?></td>
+                <td><?php echo $d["jurusan"] ?></td>
             </tr>
-            <tr>
-                <td>E024</td>
-                <td>Digital Marketing</td>
-                <td>Sistia</td>
-                <td>Administrasi Bisnis</td>
-            </tr>
+        <?php endforeach; ?>
+
+        </tbody>
+    </table>
+</body>
 </html>
