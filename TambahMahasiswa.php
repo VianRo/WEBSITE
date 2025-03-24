@@ -1,3 +1,11 @@
+<?php
+include "koneksi.php";
+
+$query = "SELECT * FROM prodi";
+$data = ambildata($query);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,35 +19,35 @@
             <table>
                 <tr>
                     <td>NIM :</td>
-                    <td><input type="text"></td>
+                    <td><input type="text" name="NIM"></td>
                 </tr>
                 <tr>
                     <td>Nama :</td>
-                    <td><input type="text"></td>
+                    <td><input type="text" name="Nama"></td>
                 </tr>
                 <tr>
                     <td>Tanggal Lahir :</td>
-                    <td><input type="Date"></td>
+                    <td><input type="Date" name="Tanggal_lahir"></td>
                 </tr>
                 <tr>
                     <td>Telp :</td>
-                    <td><input type="text"></td>
+                    <td><input type="text" name="Telp"></td>
                 </tr>
                 <tr>
                     <td>Gmail :</td>
-                    <td><input type="email"></td>
+                    <td><input type="email" name="Gmail"></td>
                 </tr>
                 <tr>
-                    <td>Id :</td>
-                    <td><select name="" id="">
-                    <option value="1">Manajemen Informatika</option>
-                    <option value="2">Digital Marketing</option>
+                    <td>Prodi</td>
+                    <td><select name="Id">
+                        <?php foreach($data as $d) : ?>
+                        <option value="<?php echo $d["Id"] ?>"><?php echo $d["Nama"] ?></option>
+                        <?php endforeach; ?>
                     </select></td>
                 </tr>
             </table>
-            <a href="Index.php">Tambah</a>
+            <a href="Index.php">Kembali</a>
             <input type="submit" value="Simpan">
-            <button type="reset" value="Batal">
         </form>
 </body>
 </html>

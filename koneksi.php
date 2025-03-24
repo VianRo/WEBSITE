@@ -12,7 +12,7 @@ function ambildata($query)
     $hasil = mysqli_query($conn, $query);
 
     $data = [];
-    while ($baris = mysqli_fetch_assoc($hasil)) {
+        while ($baris = mysqli_fetch_assoc($hasil)) {
         $data[] = $baris;
     }
     return $data;
