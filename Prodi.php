@@ -31,9 +31,10 @@ $data = ambildata($query);
             foreach($data as $d) : ?>
             <tr>
                 <td><?php echo $i++; ?></td>
-                <td><?php echo $d["nama"] ?></td>
-                <td><?php echo $d["kaprodi"] ?></td>
-                <td><?php echo $d["jurusan"] ?></td>
+                <td><?php echo $d["Id"] ?></td>
+                <td><?php echo $d["Nama"] ?></td>
+                <td><?php echo $d["Kaprodi"] ?></td>
+                <td><?php echo $d["Jurusan"] ?></td>
             </tr>
         <?php endforeach; ?>
 

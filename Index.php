@@ -33,12 +33,12 @@ $data = ambildata($query);
             foreach($data as $d) : ?>
             <tr>
                 <td><?php echo $i++; ?></td>
-                <td><?php echo $d["nim"] ?></td>
-                <td><?php echo $d["nama"] ?></td>
-                <td><?php echo $d["tanggal_lahir"] ?></td>
-                <td><?php echo $d["nomor_telepon"] ?></td>
-                <td><?php echo $d["email"] ?></td>
-                <td><?php echo $d["id_prodi"] ?></td>
+                <td><?php echo $d["NIM"] ?></td>
+                <td><?php echo $d["Nama"] ?></td>
+                <td><?php echo $d["Tanggal_lahir"] ?></td>
+                <td><?php echo $d["Telp"] ?></td>
+                <td><?php echo $d["Gmail"] ?></td>
+                <td><?php echo $d["Id"] ?></td>
             </tr>
         <?php endforeach; ?>
 
