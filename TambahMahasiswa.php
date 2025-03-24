@@ -27,13 +27,19 @@
                 </tr>
                 <tr>
                     <td>Gmail :</td>
-                    <td><input type="text"></td>
+                    <td><input type="email"></td>
                 </tr>
                 <tr>
                     <td>Id :</td>
-                    <td><input type="text"></td>
+                    <td><select name="" id="">
+                    <option value="1">Manajemen Informatika</option>
+                    <option value="2">Digital Marketing</option>
+                    </select></td>
                 </tr>
             </table>
+            <a href="Index.php">Tambah</a>
+            <input type="submit" value="Simpan">
+            <button type="reset" value="Batal">
         </form>
 </body>
 </html>
