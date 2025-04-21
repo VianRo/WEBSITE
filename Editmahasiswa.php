@@ -1,11 +1,21 @@
 <?php
+
 include "koneksi.php";
 
-$query = "SELECT * FROM prodi";
+$NIM = $_GET['NIM'];
+
+$query = "SELECT * FROM mahasiswa WHERE NIM='$NIM'";
 $data = ambildata($query);
 
-// Cek status dari parameter URL
-$status = isset($_GET['status']) ? $_GET['status'] : '';
+$prodiQuery = "SELECT * FROM prodi";
+$prodi = ambildata($prodiQuery);
+
+if (empty($data)) {
+    header("Location: Index.php");
+    exit;
+}
+
+$mahasiswa = $data[0];
 ?>
 
 <!DOCTYPE html>
@@ -13,13 +23,13 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Mahasiswa</title>
+    <title>Edit Mahasiswa</title>
     <style>
-        /* Global Styles */
+        
         body {
             font-family: Arial, sans-serif;
-            background-color: #1e1e2f; /* Dark background */
-            color: #f5f5f5; /* Light text color */
+            background-color: #1e1e2f; 
+            color: #f5f5f5; 
             margin: 0;
             padding: 0;
         }
@@ -27,32 +37,13 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
         h1 {
             text-align: center;
             margin-top: 20px;
-            color: #ffcc00; /* Highlighted title color */
-        }
-
-        .notification {
-            width: 50%;
-            margin: 20px auto;
-            padding: 10px;
-            text-align: center;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
-        .success {
-            background-color: #4CAF50; /* Green background */
-            color: white;
-        }
-
-        .error {
-            background-color: #f44336; /* Red background */
-            color: white;
+            color: #ffcc00; 
         }
 
         form {
             width: 50%;
             margin: 20px auto;
-            background-color: #2e2e3e; /* Form background */
+            background-color: #2e2e3e; 
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -106,43 +97,34 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
     </style>
 </head>
 <body>
-    <h1>Tambah Data Mahasiswa</h1>
-
-    <!-- Notifikasi -->
-    <?php if ($status == 'success') : ?>
-        <div class="notification success">Data berhasil ditambahkan!</div>
-    <?php elseif ($status == 'error') : ?>
-        <div class="notification error">Terjadi kesalahan saat menambahkan data.</div>
-    <?php endif; ?>
-
-    <form action="TambahAksiMahasiswa.php" method="post">
+    <h1>Edit Data Mahasiswa</h1>
+    <form action="EditAksiMahasiswa.php" method="post">
+        <input type="hidden" name="NIM" value="<?php echo $mahasiswa['NIM']; ?>">
         <table>
             <tr>
-                <td>NIM :</td>
-                <td><input type="text" name="NIM" placeholder="Masukkan NIM"></td>
-            </tr>
-            <tr>
                 <td>Nama :</td>
-                <td><input type="text" name="Nama" placeholder="Masukkan Nama"></td>
+                <td><input type="text" name="Nama" value="<?php echo $mahasiswa['Nama']; ?>" placeholder="Masukkan Nama"></td>
             </tr>
             <tr>
                 <td>Tanggal Lahir :</td>
-                <td><input type="date" name="Tanggal_lahir"></td>
+                <td><input type="date" name="Tanggal_lahir" value="<?php echo $mahasiswa['Tanggal_lahir']; ?>"></td>
             </tr>
             <tr>
                 <td>Telp :</td>
-                <td><input type="text" name="Telp" placeholder="Masukkan Nomor Telepon"></td>
+                <td><input type="text" name="Telp" value="<?php echo $mahasiswa['Telp']; ?>" placeholder="Masukkan Nomor Telepon"></td>
             </tr>
             <tr>
                 <td>Gmail :</td>
-                <td><input type="email" name="Gmail" placeholder="Masukkan Email"></td>
+                <td><input type="email" name="Gmail" value="<?php echo $mahasiswa['Gmail']; ?>" placeholder="Masukkan Email"></td>
             </tr>
             <tr>
                 <td>Prodi :</td>
                 <td>
                     <select name="Id">
-                        <?php foreach ($data as $d) : ?>
-                            <option value="<?php echo $d["Id"]; ?>"><?php echo $d["Nama"]; ?></option>
+                        <?php foreach ($prodi as $p) : ?>
+                            <option value="<?php echo $p['Id']; ?>" <?php echo $p['Id'] == $mahasiswa['Id'] ? 'selected' : ''; ?>>
+                                <?php echo $p['Nama']; ?>
+                            </option>
                         <?php endforeach; ?>
                     </select>
                 </td>
